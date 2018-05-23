@@ -1,0 +1,49 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateInvoicingTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type')->nullable()->index();
+            $table->morphs('invoiceable');
+//            $table->string('line1')->nullable();
+//            $table->string('line2')->nullable();
+            $table->decimal('total_amount');
+            $table->decimal('vat_amount');
+            $table->string('currency_code');
+            $table->string('storage_path')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('invoice_tags', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('invoice_id')->unsigned();
+            $table->morphs('related');
+            $table->string('tag')->index()->nullable();
+            $table->timestamps();
+
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade')->onUpdate('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('invoice_tags');
+        Schema::drop('invoices');
+    }
+}

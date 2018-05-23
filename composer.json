@@ -1,0 +1,43 @@
+{
+    "name": "makeabledk/laravel-invoicing",
+    "license": "CC-BY-SA-4.0",
+    "autoload": {
+        "psr-4": {
+            "Makeable\\LaravelInvoicing\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/support": "^5.5",
+        "illuminate/database": "^5.5",
+        "illuminate/events": "^5.5",
+        "makeabledk/laravel-currencies": "@dev",
+        "spatie/browsershot": "^3.22"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.3",
+        "laravel/laravel": "5.5",
+        "doctrine/dbal": "^2.5",
+        "orchestra/testbench": "~3.5",
+        "mockery/mockery": "^0.9.9"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Makeable\\LaravelInvoicing\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "InvoiceDocument": "Makeable\\LaravelInvoicing\\InvoiceDocument"
+            },
+            "providers": [
+                "Makeable\\LaravelInvoicing\\Providers\\InvoicingServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "style": "./vendor/bin/php-cs-fixer fix ./src --rules=@PSR2,@Symfony,ordered_class_elements,ordered_imports --verbose"
+    }
+}
