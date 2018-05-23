@@ -3,7 +3,6 @@
 namespace Makeable\LaravelInvoicing\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Makeable\LaravelInvoicing\Repositories\InvoiceDocumentRepository;
 
 class InvoicingServiceProvider extends ServiceProvider
 {
@@ -21,6 +20,5 @@ class InvoicingServiceProvider extends ServiceProvider
 
     public function register()
     {
-//        $this->app->singleton(InvoiceDocumentRepository::class);
     }
 }
