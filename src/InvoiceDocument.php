@@ -9,7 +9,7 @@ use Makeable\LaravelInvoicing\Tests\FakeInvoiceDocumentRepository;
 class InvoiceDocument extends Facade
 {
     /**
-     * Use the fake implementation for performance
+     * Use the fake implementation for performance.
      */
     public static function fake()
     {
@@ -17,7 +17,7 @@ class InvoiceDocument extends Facade
     }
 
     /**
-     * Reset fake
+     * Reset fake.
      */
     public static function real()
     {

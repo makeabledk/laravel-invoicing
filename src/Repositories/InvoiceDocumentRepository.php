@@ -11,7 +11,7 @@ use Spatie\Browsershot\Browsershot;
 class InvoiceDocumentRepository
 {
     /**
-     * Proxy call to disk using Invoice storage-path instead of normal path
+     * Proxy call to disk using Invoice storage-path instead of normal path.
      *
      * @param $name
      * @param array $arguments
