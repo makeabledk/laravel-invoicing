@@ -23,6 +23,7 @@ class InvoiceTest extends TestCase
         CreateInvoice::dispatch($this->customer(), new SalesInvoice($this->products()));
 
         $this->assertEquals(1, Invoice::count());
+        $this->assertEquals(SalesInvoice::class, Invoice::first()->type);
     }
 
     /** @test **/

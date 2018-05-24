@@ -59,7 +59,8 @@ class CreateInvoice implements ShouldQueue
      */
     protected function createInvoice()
     {
-        $invoice = new Invoice(['type' => $this->builder->type()]);
+        $invoice = new Invoice();
+        $invoice->setType($this->builder->type());
         $invoice->invoiceable()->associate($this->invoiceable);
 
         return tap($this->builder->invoice($invoice))->save();

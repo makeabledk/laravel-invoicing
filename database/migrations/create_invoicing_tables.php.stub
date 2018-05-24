@@ -16,8 +16,6 @@ class CreateInvoicingTables extends Migration
             $table->increments('id');
             $table->string('type')->nullable()->index();
             $table->morphs('invoiceable');
-//            $table->string('line1')->nullable();
-//            $table->string('line2')->nullable();
             $table->decimal('total_amount');
             $table->decimal('vat_amount');
             $table->string('currency_code');

@@ -2,11 +2,14 @@
 
 namespace Makeable\LaravelInvoicing;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Makeable\LaravelCurrencies\Amount;
 
 class Invoice extends Eloquent
 {
+    use InteractsWithMorphs;
+
     /**
      * @var array
      */
@@ -44,10 +47,10 @@ class Invoice extends Eloquent
     // _________________________________________________________________________________________________________________
 
     /**
-     * @param $query
+     * @param Builder $query
      * @param $invoiceable
      *
-     * @return mixed
+     * @return Builder
      */
     public function scopeInvoiceable($query, $invoiceable)
     {
@@ -56,7 +59,29 @@ class Invoice extends Eloquent
             ->where('invoiceable_id', $invoiceable->getKey());
     }
 
+    /**
+     * @param Builder $query
+     * @param string $type
+     *
+     * @return Builder
+     */
+    public function scopeType($query, $type)
+    {
+        return $query->where('type', $this->getMorphClassFor($type));
+    }
+
     // _________________________________________________________________________________________________________________
+
+    /**
+     * @param $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->attributes['type'] = $this->getMorphClassFor($type);
+
+        return $this;
+    }
 
     /**
      * @param Amount $amount

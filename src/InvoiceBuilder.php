@@ -36,18 +36,10 @@ abstract class InvoiceBuilder
     }
 
     /**
-     * Get the class name for polymorphic relations.
-     *
      * @return string
      */
     public function type()
     {
-        $morphMap = Relation::morphMap();
-
-        if (! empty($morphMap) && in_array(static::class, $morphMap)) {
-            return array_search(static::class, $morphMap, true);
-        }
-
         return static::class;
     }
 }
