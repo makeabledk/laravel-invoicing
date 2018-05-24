@@ -2,7 +2,6 @@
 
 namespace Makeable\LaravelInvoicing;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
 
 abstract class InvoiceBuilder
