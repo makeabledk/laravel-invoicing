@@ -36,7 +36,9 @@ class InvoiceDocumentRepository
      */
     public function createPdf($invoice, $html, $filename = null)
     {
-        Browsershot::html($html)->savePdf($tempPdf = tempnam(sys_get_temp_dir(), 'LaravelInvoice').'.pdf');
+        Browsershot::html($html)
+            ->noSandbox()
+            ->savePdf($tempPdf = tempnam(sys_get_temp_dir(), 'LaravelInvoice').'.pdf');
 
         return tap($this->store($invoice, new File($tempPdf), $filename), function () use ($tempPdf) {
             @unlink($tempPdf);
