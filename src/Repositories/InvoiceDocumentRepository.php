@@ -57,10 +57,10 @@ class InvoiceDocumentRepository
     public function store($invoice, $file, $filename = null)
     {
         $filename = $filename ?: $invoice->id.'_'.$file->hashName();
-        $path = trim(config('laravel-invoicing.invoice_storage.path'), '/');
+        $path = trim(config('laravel-invoicing.storage.path'), '/');
 
         if (! $storagePath = $this->disk()->putFileAs($path, $file, $filename, [
-            'visibility' => config('laravel-invoicing.invoice_storage.visibility'),
+            'visibility' => config('laravel-invoicing.storage.visibility'),
         ])) {
             throw new \Exception('Failed to store invoice');
         }
@@ -76,6 +76,6 @@ class InvoiceDocumentRepository
      */
     public function disk()
     {
-        return Storage::disk(config('laravel-invoicing.invoice_storage.disk'));
+        return Storage::disk(config('laravel-invoicing.storage.disk'));
     }
 }

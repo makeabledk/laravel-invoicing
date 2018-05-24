@@ -121,4 +121,12 @@ class Invoice extends Eloquent
     {
         return new Amount($this->attributes['vat_amount'], $this->currency_code);
     }
+
+    /**
+     * @return string
+     */
+    public function getDownloadUrlAttribute()
+    {
+        return InvoiceDocument::url($this);
+    }
 }
