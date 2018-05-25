@@ -59,7 +59,7 @@ class CreateInvoice implements ShouldQueue
      */
     protected function createInvoice()
     {
-        $invoice = new Invoice();
+        $invoice = app()->make(Invoice::class);
         $invoice->setType($this->builder->type());
         $invoice->invoiceable()->associate($this->invoiceable);
 
