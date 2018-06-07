@@ -38,6 +38,7 @@ class InvoiceDocumentRepository
     {
         Browsershot::html($html)
             ->noSandbox()
+            ->margins(20, 20, 20, 20)
             ->savePdf($tempPdf = tempnam(sys_get_temp_dir(), 'LaravelInvoice').'.pdf');
 
         return tap($this->store($invoice, new File($tempPdf), $filename), function () use ($tempPdf) {
